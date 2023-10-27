@@ -23,7 +23,7 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          cat "test file contents" > ${GITHUB_WORKSPACE}/testfile.txt
+          echo "test file contents" > ${GITHUB_WORKSPACE}/testfile.txt
 
           git add -A
           git commit -m "Updating some file"
