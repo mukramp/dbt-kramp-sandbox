@@ -9,7 +9,8 @@ on:
 jobs:
   # This workflow contains a single job called "build"
   generate:
-    if: github.triggering_actor != "github-actions[bot]"
+    if: >-
+      github.triggering_actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
 
     # Steps represent a sequence of tasks that will be executed as part of the job
@@ -22,7 +23,7 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          cat "test file contents" > ${GITHUB_WORKSPACE}/testfile.txt
+          echo "test file contents" > ${GITHUB_WORKSPACE}/testfile.txt
 
           git add -A
           git commit -m "Updating some file"
