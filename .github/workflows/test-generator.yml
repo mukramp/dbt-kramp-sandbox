@@ -2,7 +2,7 @@ name: test-generation
 
 on:
   push:
-    branches: [ "**" ]
+    branches: [ "**", "!main" ]
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
@@ -13,6 +13,8 @@ jobs:
       github.triggering_actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
 
+    permissions:
+      contents: write
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
@@ -27,4 +29,5 @@ jobs:
 
           git add -A
           git commit -m "Updating some file"
+          git status
           git push
