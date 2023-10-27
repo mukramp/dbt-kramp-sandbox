@@ -1,0 +1,29 @@
+name: test-generation
+
+on:
+  push:
+    branches: [ "**" ]
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  # This workflow contains a single job called "build"
+  generate:
+    if: github.triggering_actor != "github-actions[bot]"
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v3
+
+      - name: generate fake file
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          cat "test file contents" > ${GITHUB_WORKSPACE}/testfile.txt
+
+          git add -A
+          git commit -m "Updating some file"
+          git push
