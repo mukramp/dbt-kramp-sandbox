@@ -1,5 +1,11 @@
 version: 2
 
+sources:
+  - name: dbt_mukramp
+    database: kramp-data-engineering-sandbox
+    tables:
+      - name: external_source
+
 models:
   - name: customers
     description: One record per customer
